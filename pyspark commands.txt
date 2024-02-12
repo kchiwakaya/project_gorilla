@@ -1,0 +1,41 @@
+-->Create a dataframe:
+1. dataset = [("James", "Sales", 3000), 
+    ("Michael", "Sales", 4600), 
+    ("Robert", "Sales", 4100), 
+    ("Maria", "Finance", 3000), 
+    ("James", "Sales", 3000), 
+    ("Scott", "Finance", 3300), 
+    ("Jen", "Finance", 3900), 
+    ("Jeff", "Marketing", 3000), 
+    ("Kumar", "Marketing", 2000), 
+    ("Saif", "Sales", 4100) 
+  ]
+2. columns= ["employee_name", "department", "salary"]
+    df = spark.createDataFrame(data = dataset, schema = columns)
+    df.show()
+    distinctDF = df.distinct()    # count distinct rows in dataset.
+    distinctDF.show()
+    distinctDF.count()
+
+
+-->PySpark Distinct of multiple columns
+
+# drop the duplicate rows according to department and salary column
+
+1.dropDisDF = df.dropDuplicates(["department"])
+  dropDisDF.show()
+  dropDisDF.count()
+
+
+-->DataFrame sorting using orderBy() function
+  1. df.orderBy("department").show()
+
+
+-->Using Raw SQL
+ 
+df.createOrReplaceTempView("EMP")
+spark.sql("select employee_name,department,salary from EMP ORDER BY department").show()
+
+
+
+
